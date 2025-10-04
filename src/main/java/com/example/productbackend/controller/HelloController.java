@@ -8,7 +8,7 @@ public class HelloController {
 
 
 
-    @GetMapping("/hello")
+    @GetMapping("/helloWorld")
     public String helloWorld(){
         return "hello world from spring boot";
     }
