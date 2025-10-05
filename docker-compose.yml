@@ -13,9 +13,7 @@ services:
       - postgres_data:/var/lib/postgresql/data
 
   app:
-    build:
-      context: .              # look for Dockerfile in current directory
-      dockerfile: Dockerfile  # optional if named Dockerfile
+    image: 817100478208.dkr.ecr.ap-southeast-1.amazonaws.com/product-backend-cicd:latest  # ✅ prebuilt image from ECR
     container_name: product_app
     ports:
       - "8080:8080"
