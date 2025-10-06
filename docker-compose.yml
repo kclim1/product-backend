@@ -13,7 +13,13 @@ services:
       - postgres_data:/var/lib/postgresql/data
 
   app:
-    image: 817100478208.dkr.ecr.ap-southeast-1.amazonaws.com/product-backend-cicd:latest  # ✅ prebuilt image from ECR
+#    used for cicd on aws
+#    image: 817100478208.dkr.ecr.ap-southeast-1.amazonaws.com/product-backend-cicd:latest  # ✅ prebuilt image from ECR
+#    used for local dev
+    build:
+      context: .               # <— build image from your local directory
+      dockerfile: Dockerfile   # <— optional if your file is literally named Dockerfile
+
     container_name: product_app
     ports:
       - "8080:8080"
