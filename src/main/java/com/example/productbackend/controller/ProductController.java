@@ -2,6 +2,7 @@ package com.example.productbackend.controller;
 
 import com.example.productbackend.dto.NewProductRequestDTO;
 import com.example.productbackend.dto.ProductResponseDTO;
+import com.example.productbackend.dto.UpdateProductRequestDTO;
 import com.example.productbackend.product.Product;
 import com.example.productbackend.service.ProductService;
 import org.springframework.http.HttpStatus;
@@ -40,12 +41,20 @@ public class ProductController {
     }
 
     @PostMapping
-    public ResponseEntity<ProductResponseDTO> addProduct(@RequestBody NewProductRequestDTO request){
+    public ResponseEntity<ProductResponseDTO> addProduct(@RequestBody NewProductRequestDTO request) {
 //        receives json object and passes it to service where its mapped to request dto
         Product addedProduct = productService.addProduct(request);
 //        processes the request and then passes the response to response dto
-        ProductResponseDTO response = new ProductResponseDTO("product added succesfully!!",addedProduct);
+        ProductResponseDTO response = new ProductResponseDTO("product added succesfully!!", addedProduct);
 //        returns the response as part of response entity.
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<ProductResponseDTO> updateProductById(@PathVariable UUID id, @RequestBody UpdateProductRequestDTO updatedProduct) {
+        ProductResponseDTO update = productService.updateProductById(id, updatedProduct);
+        ProductResponseDTO updatedSuccessfully = new ProductResponseDTO("updated successfully",update.product());
+        return ResponseEntity.ok(updatedSuccessfully);
+    }
+
 }
