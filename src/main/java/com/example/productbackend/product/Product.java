@@ -21,25 +21,41 @@ public class Product {
 
     //not null + @size min = 1 equals @notblank
     @NotBlank
+    @Column(nullable = false, length = 50)
     private String name;
 
     private String description;
 
     @Positive
+    @Column(nullable = false, precision = 10 , scale = 2)
     private BigDecimal price;
 
+    @Column(length = 200)
     private String imageUrl;
 
     @PositiveOrZero
+    @Column(nullable = false)
     private int stock_level;
 
     @CreationTimestamp
+    @Column(nullable = false , updatable = false)
     private Instant created_at;
 
     @CreationTimestamp
     private Instant updated_at;
 
     private Instant deleted_at;
+
+    @PrePersist
+    public void prePersist(){
+        this.created_at = Instant.now();
+        this.updated_at = Instant.now();
+    }
+
+    @PreUpdate
+    public void preUpdate(){
+        this.updated_at = Instant.now();
+    }
 
     public UUID getId() {
         return id;
