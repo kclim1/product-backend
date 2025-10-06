@@ -44,6 +44,18 @@ public class Product {
 
     private Instant deleted_at;
 
+//    required by hibernate
+    public Product() {}
+
+//    optional. create it if you want to manually test
+    public Product(String name , String description , BigDecimal price , String imageUrl , int stock_level ){
+        this.name = name;
+        this.description = description;
+        this.price = price;
+        this.imageUrl = imageUrl;
+        this.stock_level = stock_level;
+    }
+
     @PrePersist
     public void prePersist(){
         this.created_at = Instant.now();
