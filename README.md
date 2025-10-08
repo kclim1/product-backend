@@ -47,7 +47,7 @@ This service provides CRUD operations for managing products, complete with DTO p
   </tr>
   <tr>
     <td><b>Testing</b></td>
-    <td>Postman (manual), JUnit 5 (optional)</td>
+    <td>Postman (manual), JUnit 5 </td>
   </tr>
   <tr>
     <td><b>Others</b></td>
