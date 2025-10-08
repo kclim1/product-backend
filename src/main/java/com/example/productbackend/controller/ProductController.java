@@ -23,8 +23,12 @@ public class ProductController {
     }
 
     @GetMapping
-    public List<ProductResponseDTO> findAllProducts() {
-        return productService.getAllProducts();
+    public ResponseEntity<List<ProductResponseDTO>> findAllProducts(
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "5") int size
+    ) {
+        List<ProductResponseDTO> products = productService.getAllProducts(page,size);
+        return ResponseEntity.ok(products);
     }
 
     @GetMapping("/{id}")
@@ -42,10 +46,10 @@ public class ProductController {
 
     @PostMapping
     public ResponseEntity<ProductResponseDTO> addProduct(@RequestBody NewProductRequestDTO request) {
-//        receives json object and passes it to service where its mapped to request dto
+//        receives json object and passes it to service where it's mapped to request dto
         Product addedProduct = productService.addProduct(request);
 //        processes the request and then passes the response to response dto
-        ProductResponseDTO response = new ProductResponseDTO("product added succesfully!!", addedProduct);
+        ProductResponseDTO response = new ProductResponseDTO("product added successfully!!", addedProduct);
 //        returns the response as part of response entity.
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }

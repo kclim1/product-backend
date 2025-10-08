@@ -5,6 +5,11 @@ import com.example.productbackend.dto.ProductResponseDTO;
 import com.example.productbackend.dto.UpdateProductRequestDTO;
 import com.example.productbackend.product.Product;
 import com.example.productbackend.repository.ProductRepository;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.PageRequest;
+
+
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
@@ -20,9 +25,10 @@ public class ProductService {
         this.productRepository = productRepository;
     }
 
-    public List<ProductResponseDTO> getAllProducts() {
-        List<Product> products = productRepository.findAll();
-        return products.stream().map(product -> new ProductResponseDTO("", product)).toList();
+    public List<ProductResponseDTO> getAllProducts(int page,int size) {
+        Pageable pageable = PageRequest.of(page,size);
+        Page<Product> productPage = productRepository.findAll(pageable);
+        return productPage.getContent().stream().map(product -> new ProductResponseDTO("", product)).toList();
     }
 
     public ProductResponseDTO fetchProductById(UUID id) {
