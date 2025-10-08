@@ -105,7 +105,7 @@ Delete a product record from the database.
 
 #### Error Handling Example
 
-All exceptions are handled by a global @RestControllerAdvice that returns a standardized ErrorResponse DTO:
+All exceptions are handled by a global @RestControllerAdvice that returns a standardized ErrorResponse DTO :
 ```
 {
   "message": "Product with id not found",
