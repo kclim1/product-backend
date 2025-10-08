@@ -55,6 +55,8 @@ jobs:
       - name: SSH into EC2 and deploy
         uses: appleboy/ssh-action@v0.1.10
         with:
+#          get the public ip and replace @ github secrets
+#          OR use elastic IP to give fixed public ipv4 ip address
           host: ${{ secrets.EC2_HOST }}
           username: ${{ secrets.EC2_USER }}
           key: ${{ secrets.EC2_SSH_KEY }}
