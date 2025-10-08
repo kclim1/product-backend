@@ -57,3 +57,13 @@ This service provides CRUD operations for managing products, complete with DTO p
 
 <hr>
 
+### API Documentation
+
+#### Base URL : /api/v1/products
+
+### Get All Products
+
+GET /api/v1/products
+
+Description:
+Returns a paginated list of all products.
