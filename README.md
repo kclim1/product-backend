@@ -63,7 +63,57 @@ This service provides CRUD operations for managing products, complete with DTO p
 
 ### Get All Products
 
-GET /api/v1/products
+#### GET /api/v1/products
 
 Description:
 Returns a paginated list of all products.
+<hr>
+
+#### Get Product by ID
+
+GET /api/v1/products/{id}
+
+Description:
+Fetch details of a specific product by its UUID.
+<hr>
+
+#### Add New Product
+
+POST /api/v1/products
+
+Description:
+Create a new product entry.
+<hr>
+
+Update Product by ID
+
+PUT /api/v1/products/{id}
+
+Description:
+Update details of an existing product by UUID.
+
+<hr>
+
+#### Delete Product by ID
+
+DELETE /api/v1/products/{id}
+
+Description:
+Delete a product record from the database.
+
+<hr>
+
+#### Error Handling Example
+
+All exceptions are handled by a global @RestControllerAdvice that returns a standardized ErrorResponse DTO:
+```
+{
+  "message": "Product with id not found",
+  "error": "Not Found",
+  "statusCode": 404,
+  "path": "/api/v1/products/d32b4d58-d692-441c-81b5-0344b54ad231",
+  "timeStamp": "2025-10-07T13:02:03.603503083Z"
+}
+```
+
+
